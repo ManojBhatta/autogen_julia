@@ -1,7 +1,25 @@
 [project]
 name = "autogen-julia"
 version = "0.1.0"
-description = "Add your description here"
+description = ""
+authors = [
+    {name = "manoj-ank",email = "manoj@ank-world.com"}
+]
 readme = "README.md"
-requires-python = ">=3.12"
-dependencies = []
+requires-python = ">=3.12,<3.14"
+dependencies = [
+    "autogen==0.6.1",
+    "autogen-ext>=0.5.7",
+    "flaml>=2.3.5",
+    "ipython>=9.3.0",
+    "matplotlib>=3.10.3",
+    "streamlit>=1.45.1",
+    "yfinance>=0.2.61",
+]
+
+[tool.poetry]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

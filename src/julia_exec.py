@@ -8,6 +8,9 @@ import autogen
 from autogen.coding import CodeBlock, CodeExecutor, CodeResult, CodeExtractor
 from autogen import config_list_from_json
 
+# configuration json for llm
+# this is inside the src directory
+
 script_dir = Path(__file__).resolve().parent
 llm_config = config_list_from_json(f"{script_dir}/config.json")
 
@@ -134,7 +137,6 @@ class JuliaCodeExecutor(CodeExecutor):
         """Execute a single Julia code block"""
         
         # Create temporary Julia file
-        # julia_file =  f"{filename_prefix}.jl"
         julia_file = os.path.join(self.work_dir, f"{filename_prefix}.jl")
         print(f'\n \n the path to julia file is {julia_file} \n \n ')
         
@@ -176,10 +178,6 @@ class JuliaCodeExecutor(CodeExecutor):
                 exit_code=1,
                 output=f"Execution error: {str(e)}"
             )
-        # finally:
-        #     # Clean up temporary file
-        #     if julia_file.exists():
-        #         julia_file.unlink()
     
     def restart(self) -> None:
         """Restart the code executor (cleanup temporary files)"""
@@ -205,20 +203,7 @@ def create_julia_agents():
         code_execution_config={
             "executor": julia_executor,
         },
-        # system_message=f"you are a user proxy agent, you act as a virtual version of the user and check the execution result of the code  provided by julia coder and executed by the code executor agent, if the code is ran successfully, just send the message 'TERMINATE' and nothing else and if any error is there suggest what might be causing the error and possible modificatoins  "
     )
-
-#     julia_executor_agent = autogen.UserProxyAgent(
-#     name="julia_executor_agent",
-#     human_input_mode="NEVER",  
-#     # max_consecutive_auto_reply=3,
-#     is_termination_msg=lambda x: x.get("content", "").rstrip().endswith("TERMINATE"),
-#     code_execution_config={
-#         "executor": julia_executor,
-#     },
-#     system_message=f"You automatically execute any Julia code that is provided to you and report the results. and if any plots are to be generated or any file is to be saved , save the file with appropraite name to {julia_executor.work_dir}"
-# )
-# This is redundant as the user proxy can execute the code
    
     # Julia Code Generator Agent
     julia_coder = autogen.AssistantAgent(
@@ -247,35 +232,8 @@ def create_julia_agents():
     return user_proxy, julia_coder
 
 
-# Example usage function
 def main():
-    """Main function to demonstrate the Julia AutoGen system"""
-    
-    # Create agents
-    user_proxy, julia_coder = create_julia_agents()
-    
-    # Start the conversation
-    print("\n=== Julia AutoGen System Started ===")
-    print("You can now interact with the Julia development team!")
-    print("Available agents:")
-    print("- julia_coder: Generates Julia code")
-    print("- julia_executor: Executes and analyzes Julia code")
-    print("\nType 'TERMINATE' to end the conversation.")
-    
-    # Example group chat
-    groupchat = autogen.GroupChat(
-        agents=[user_proxy, julia_coder],
-        messages=[],
-        max_round=50
-    )
-    
-    manager = autogen.GroupChatManager(groupchat=groupchat, llm_config=llm_config)
-    
-    # Start the conversation
-    user_proxy.initiate_chat(
-        manager,
-        message="Hello! I need help with Julia programming. What can you help me with?"
-    )
+    pass
 
 
 if __name__ == "__main__":
