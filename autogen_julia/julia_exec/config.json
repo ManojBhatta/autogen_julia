@@ -1,0 +1,7 @@
+{
+  "model": "GPT-4o-0806",
+  "api_key": "f79ea912919d4b86a65a5c9d4f2baf4d",
+  "base_url": "https://misumi-eastus-2480-openai-test.openai.azure.com/",
+  "api_type": "azure",
+  "api_version": "2024-08-01-preview"
+}
