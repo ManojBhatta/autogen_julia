@@ -1,10 +1,7 @@
 [project]
 name = "autogen-julia"
 version = "0.1.0"
-description = ""
-authors = [
-    {name = "manoj-ank",email = "manoj@ank-world.com"}
-]
+description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12,<3.14"
 dependencies = [
@@ -16,10 +13,3 @@ dependencies = [
     "streamlit>=1.45.1",
     "yfinance>=0.2.61",
 ]
-
-[tool.poetry]
-
-
-[build-system]
-requires = ["poetry-core>=2.0.0,<3.0.0"]
-build-backend = "poetry.core.masonry.api"

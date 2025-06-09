@@ -4,7 +4,7 @@ Julia AutoGen Workflow Demo
 This script demonstrates the proper workflow for generating and executing Julia code
 """
 
-from autogen_julia.julia_exec.julia_exec import create_julia_agents
+from julia_exec import create_julia_agents
 from pathlib import Path
 from autogen import config_list_from_json
 
