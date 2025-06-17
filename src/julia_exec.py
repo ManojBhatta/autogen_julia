@@ -6,13 +6,21 @@ from typing import List, Optional, Union
 from pathlib import Path
 import autogen
 from autogen.coding import CodeBlock, CodeExecutor, CodeResult, CodeExtractor
-from autogen import config_list_from_json
+# from autogen import config_list_from_json
 
 # configuration json for llm
 # this is inside the src directory
 
-script_dir = Path(__file__).resolve().parent
-llm_config = config_list_from_json(f"{script_dir}/config.json")
+# script_dir = Path(__file__).resolve().parent
+# llm_config = config_list_from_json(f"{script_dir}/config.json")
+
+llm_config = {
+  "model": os.getenv("AZURE_MODEL", "your_model_name"),
+  "api_key": os.getenv("AZURE_API_KEY", "api_key"),
+  "base_url": os.getenv("AZURE_API_BASE_URL", "https://your-azure-endpoint.openai.azure.com/"),
+  "api_type": os.getenv("AZURE_API_TYPE", "azure"),
+  "api_version": os.getenv("AZURE_API_VERSION", "2023-05-15"),
+}
 
 class JuliaCodeExtractor:
     """Code extractor for Julia code blocks"""
@@ -226,6 +234,10 @@ def create_julia_agents():
         the following is only when you receive the execution result from the user_proxy agent, you should not execute the code yourself, you just generate the code and send it to the user_proxy agent for execution,
         and if the code is executed successfully, you should send the message 'TERMINATE' and nothing else,
         and if there is any error in the code, you should suggest what might be causing the error and possible modifications to fix it,
+        If you are asked to write simulation script always save the resulting plots in a file with suitable name and extension,
+
+        When asked to modify the code, always provide the complete code block with the modifications included and don't ask the user to make changes.
+        And also change the name of plots for modifiction with v2 v3 and so on
         """
     )
     
