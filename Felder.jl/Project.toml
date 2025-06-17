@@ -1,0 +1,37 @@
+name = "Felder"
+uuid = "af04c388-35b8-413f-be49-6511109018d1"
+authors = ["Ken Igeta <igeta.engineering@gmail.com"]
+version = "0.1.0"
+
+[deps]
+FileIO = "5789e2e9-d7fb-5bc7-8068-2c6fae9b9549"
+IncompleteLU = "40713840-3770-5561-ab4c-a76e7d0d7895"
+Krylov = "ba0b0d4f-ebba-5204-a429-3ac8c609bfb7"
+LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
+LinearSolve = "7ed4a6bd-45f5-4d41-b270-4a48e9bafcae"
+NearestNeighbors = "b8a86587-4115-5ab1-83bc-aa920d37bbce"
+OrderedCollections = "bac558e1-5e72-5ebc-8fee-abe8a469f55d"
+Parameters = "d96e819e-fc66-5662-9728-84c9c7592b0a"
+Pardiso = "46dd5b70-b6fb-5a00-ae2d-e8fea33afaf2"
+Preconditioners = "af69fa37-3177-5a40-98ee-561f696e4fcd"
+Printf = "de0858da-6303-5e67-8744-51eddeeeb8d7"
+SciMLBase = "0bca4576-84f4-4d90-8ffe-ffa030f20462"
+SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
+StaticArrays = "90137ffa-7385-5640-81b9-e52037218182"
+WriteVTK = "64499a7a-5c06-52f2-abe2-ccb03c286192"
+Zygote = "e88e6eb3-aa80-5325-afca-941959d7151f"
+
+[weakdeps]
+Makie = "ee78f7c6-11fb-53f2-987a-cfe4a2b5a57a"
+
+[extensions]
+FelderMakieExt = "Makie"
+
+[extras]
+BenchmarkTools = "6e4b80f9-dd63-53aa-95a3-0cdb28fa8baf"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
+Random = "9a3f8284-a2c9-5f02-9a11-845980a1fd5c"
+Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
+
+[targets]
+test = ["BenchmarkTools", "Test", "Random", "GLMakie"]
